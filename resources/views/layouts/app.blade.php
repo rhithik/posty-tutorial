@@ -11,20 +11,37 @@
 <body class="bg-gray-200">
 <nav class="p-6 bg-white flex justify-between mb-6">
     <ul class="flex items-center">
-        <li class="px-3"><a href="">Home</a></li>
-        <li class="px-3"><a href="">Dashboard</a></li>
-        <li class="px-3"><a href="">Post</a></li>
+        <li class="px-3">
+            <a href="/">Home</a>
+        </li>
+        <li class="px-3">
+            <a href="{{ route('dashboard') }}">Dashboard</a>
+        </li>
+        <li class="px-3">
+            <a href="{{ route('posts') }}">Posts</a>
+        </li>
     </ul>
 
     <ul class="flex items-center">
         @auth
-            <li class="px-3"><a href="">Jeff McHale</a></li>
-            <li class="px-3"><a href="{{ route('logout') }}">Logout</a></li>
+            <li class="px-3">
+                <a href="">{{ auth()->user()->name }}</a>
+            </li>
+            <li class="px-3">
+                <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
         @endauth
 
         @guest
-            <li class="px-3"><a href="{{ route('login') }}">Login</a></li>
-            <li class="px-3"><a href="{{ route('register') }}">Register</a></li>
+            <li class="px-3">
+                <a href="{{ route('login') }}">Login</a>
+            </li>
+            <li class="px-3">
+                <a href="{{ route('register') }}">Register</a>
+            </li>
         @endguest
     </ul>
 </nav>
