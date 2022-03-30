@@ -19,11 +19,11 @@
     <ul class="flex items-center">
         @auth
             <li class="px-3"><a href="">Jeff McHale</a></li>
-            <li class="px-3"><a href="">Logout</a></li>
+            <li class="px-3"><a href="{{ route('logout') }}">Logout</a></li>
         @endauth
 
         @guest
-            <li class="px-3"><a href="">Login</a></li>
+            <li class="px-3"><a href="{{ route('login') }}">Login</a></li>
             <li class="px-3"><a href="{{ route('register') }}">Register</a></li>
         @endguest
     </ul>
