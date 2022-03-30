@@ -15,11 +15,17 @@
         <li class="px-3"><a href="">Dashboard</a></li>
         <li class="px-3"><a href="">Post</a></li>
     </ul>
+
     <ul class="flex items-center">
-        <li class="px-3"><a href="">Jeff McHale</a></li>
-        <li class="px-3"><a href="">Login</a></li>
-        <li class="px-3"><a href="{{ route('register') }}">Register</a></li>
-        <li class="px-3"><a href="">Logout</a></li>
+        @auth
+            <li class="px-3"><a href="">Jeff McHale</a></li>
+            <li class="px-3"><a href="">Logout</a></li>
+        @endauth
+
+        @guest
+            <li class="px-3"><a href="">Login</a></li>
+            <li class="px-3"><a href="{{ route('register') }}">Register</a></li>
+        @endguest
     </ul>
 </nav>
     @yield('content')
