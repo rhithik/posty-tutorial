@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+    
     public function index()
     {
-        $posts = Post::get(); // Collection
+        $posts = Post::paginate(10); // Collection
 
         return view('posts.index', [
             'posts' => $posts
@@ -22,7 +27,7 @@ class PostController extends Controller
             'body' => 'required'
         ]);
 
-        auth()->user()->posts()->create($request->only('body'));
+        $request->user()->posts()->create($request->only('body'));
 
         return back();
     }
