@@ -9,12 +9,12 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->only(['store', 'destroy']);
     }
     
     public function index()
     {
-        $posts = Post::paginate(10); // Collection
+        $posts = Post::with(['user', 'likes'])->paginate(10); // Collection
 
         return view('posts.index', [
             'posts' => $posts
