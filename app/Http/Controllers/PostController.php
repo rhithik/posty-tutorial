@@ -15,10 +15,17 @@ class PostController extends Controller
     
     public function index()
     {
-        $posts = Post::latest()->with(['user', 'likes'])->paginate(10); // Collection
+        $posts = Post::latest()->with(['user', 'likes'])->paginate(20); // Collection
 
         return view('posts.index', [
             'posts' => $posts
+        ]);
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post
         ]);
     }
 
